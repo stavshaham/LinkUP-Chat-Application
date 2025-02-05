@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>console_1.sql</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+database.sql</font>
+</center></td></tr></table>
+<pre><span class="s0">USE </span><span class="s1">linkup</span><span class="s2">;</span>
+
+<span class="s0">CREATE TABLE IF NOT EXISTS </span><span class="s1">users </span><span class="s2">(</span>
+    <span class="s1">id </span><span class="s0">INT UNIQUE NOT NULL</span><span class="s2">,</span>
+    <span class="s1">username </span><span class="s0">VARCHAR</span><span class="s2">(</span><span class="s3">255</span><span class="s2">) </span><span class="s0">UNIQUE NOT NULL</span><span class="s2">,</span>
+    <span class="s1">email </span><span class="s0">VARCHAR</span><span class="s2">(</span><span class="s3">255</span><span class="s2">) </span><span class="s0">UNIQUE NOT NULL</span><span class="s2">,</span>
+    <span class="s0">password VARCHAR</span><span class="s2">(</span><span class="s3">255</span><span class="s2">) </span><span class="s0">NOT NULL</span><span class="s2">,</span>
+    <span class="s1">created_at </span><span class="s0">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span class="s2">,</span>
+    <span class="s0">PRIMARY KEY </span><span class="s2">(</span><span class="s1">id</span><span class="s2">)</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE IF NOT EXISTS </span><span class="s1">chats </span><span class="s2">(</span>
+    <span class="s1">id </span><span class="s0">INT UNIQUE NOT NULL</span><span class="s2">,</span>
+    <span class="s0">name VARCHAR</span><span class="s2">(</span><span class="s3">255</span><span class="s2">),</span>
+    <span class="s0">type ENUM</span><span class="s2">(</span><span class="s4">'INDIVIDUAL'</span><span class="s2">, </span><span class="s4">'GROUP'</span><span class="s2">) </span><span class="s0">NOT NULL</span><span class="s2">,</span>
+    <span class="s1">created_at </span><span class="s0">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span class="s2">,</span>
+    <span class="s0">PRIMARY KEY</span><span class="s2">(</span><span class="s1">id</span><span class="s2">)</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE IF NOT EXISTS </span><span class="s1">chat_participants </span><span class="s2">(</span>
+    <span class="s1">id </span><span class="s0">INT UNIQUE NOT NULL PRIMARY KEY</span><span class="s2">,</span>
+    <span class="s1">chat_id </span><span class="s0">INT</span><span class="s2">,</span>
+    <span class="s1">user_id </span><span class="s0">INT</span><span class="s2">,</span>
+    <span class="s0">FOREIGN KEY </span><span class="s2">(</span><span class="s1">chat_id</span><span class="s2">) </span><span class="s0">REFERENCES </span><span class="s1">chats</span><span class="s2">(</span><span class="s1">id</span><span class="s2">),</span>
+    <span class="s0">FOREIGN KEY </span><span class="s2">(</span><span class="s1">user_id</span><span class="s2">) </span><span class="s0">REFERENCES </span><span class="s1">users</span><span class="s2">(</span><span class="s1">id</span><span class="s2">)</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE IF NOT EXISTS </span><span class="s1">messages </span><span class="s2">(</span>
+    <span class="s1">id </span><span class="s0">INT UNIQUE NOT NULL PRIMARY KEY</span><span class="s2">,</span>
+    <span class="s1">sender_id </span><span class="s0">INT</span><span class="s2">,</span>
+    <span class="s1">chat_id </span><span class="s0">INT</span><span class="s2">,</span>
+    <span class="s1">content </span><span class="s0">TEXT NOT NULL</span><span class="s2">,</span>
+    <span class="s1">sent_at </span><span class="s0">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span><span class="s2">,</span>
+    <span class="s0">FOREIGN KEY </span><span class="s2">(</span><span class="s1">sender_id</span><span class="s2">) </span><span class="s0">REFERENCES </span><span class="s1">users</span><span class="s2">(</span><span class="s1">id</span><span class="s2">),</span>
+    <span class="s0">FOREIGN KEY </span><span class="s2">(</span><span class="s1">chat_id</span><span class="s2">) </span><span class="s0">REFERENCES </span><span class="s1">chats</span><span class="s2">(</span><span class="s1">id</span><span class="s2">)</span>
+<span class="s2">);</span>
+
+<span class="s0">CREATE TABLE IF NOT EXISTS </span><span class="s1">attachments </span><span class="s2">(</span>
+    <span class="s1">id </span><span class="s0">INT UNIQUE NOT NULL PRIMARY KEY</span><span class="s2">,</span>
+    <span class="s1">message_id </span><span class="s0">INT</span><span class="s2">,</span>
+    <span class="s1">file_url </span><span class="s0">VARCHAR</span><span class="s2">(</span><span class="s3">500</span><span class="s2">) </span><span class="s0">NOT NULL</span><span class="s2">,</span>
+    <span class="s1">file_type </span><span class="s0">VARCHAR</span><span class="s2">(</span><span class="s3">50</span><span class="s2">) </span><span class="s0">NOT NULL</span><span class="s2">,</span>
+    <span class="s0">FOREIGN KEY </span><span class="s2">(</span><span class="s1">message_id</span><span class="s2">) </span><span class="s0">REFERENCES </span><span class="s1">messages</span><span class="s2">(</span><span class="s1">id</span><span class="s2">)</span>
+<span class="s2">);</span></pre>
+</body>
+</html>
