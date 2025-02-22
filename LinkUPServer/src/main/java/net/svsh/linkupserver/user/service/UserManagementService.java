@@ -37,7 +37,6 @@ public class UserManagementService {
         try {
             System.err.println("Can get here!");
             User user = new User();
-            user.setId(registerRequest.getId());
             user.setEmail(registerRequest.getEmail());
             user.setUsername(registerRequest.getUsername());
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));

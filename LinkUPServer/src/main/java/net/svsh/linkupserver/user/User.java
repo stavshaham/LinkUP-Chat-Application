@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.svsh.linkupserver.user.service.UserManagementService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +23,7 @@ import java.util.Random;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", length = 45)
     private Long id;
 
@@ -37,19 +40,11 @@ public class User implements UserDetails {
     @Column(name = "roles")
     private UserRole roles;
 
-    public User(Long id, String username, String email, String password, UserRole role) {
-        this.id = id;
+    public User(String username, String email, String password, UserRole role) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.roles = role;
-    }
-
-    public long generateId() {
-        Random r = new Random();
-        long id = 100000000 + r.nextInt(900000000);
-
-        return id;
     }
 
     @Override
