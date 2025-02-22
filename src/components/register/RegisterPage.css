@@ -11,6 +11,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Stack children vertically */
   min-height: 100vh;
   background: linear-gradient(135deg, #1E90FF 0%, #4B6CB7 50%, #182848 100%);
   background-size: 200% 200%;
@@ -269,6 +270,17 @@ html, body {
 .login-link a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.success-alert,
+.error-alert {
+    display: none; /* Start hidden */
+}
+
+.success-alert.show,
+.error-alert.show {
+    display: flex; /* Show when the 'show' class is added */
+    opacity: 1; /* Fully visible */
 }
 
 @keyframes gradientAnimation {

@@ -6,3 +6,5 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+LinkUPServer/src/main/java/net/svsh/linkupserver/security/jwt/JWTUtils.java
+LinkUPServer/src/main/java/net/svsh/linkupserver/security/jwt/JWTUtils.java

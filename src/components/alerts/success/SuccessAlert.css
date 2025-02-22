@@ -1,0 +1,35 @@
+/* Success Alert Styles */
+.success-alert {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    padding: 15px;
+    border: 1px solid #c3e6cb; /* Border color */
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif; /* Match the font used in the application */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    opacity: 0; /* Start hidden */
+    display: none;
+    transition: opacity 0.5s ease-in-out; /* Fade effect */
+}
+
+.success-alert.show {
+    display: flex;
+    opacity: 1; /* Fully visible when 'show' class is added */
+}
+
+.success-alert .icon {
+    margin-right: 20px; /* Space between icon and text */
+    font-size: 1.5rem; /* Icon size */
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: inherit; /* Inherit color from parent */
+    font-size: 1.5rem; /* Adjust size as needed */
+    cursor: pointer;
+    margin-left: auto; /* Push to the right */
+}

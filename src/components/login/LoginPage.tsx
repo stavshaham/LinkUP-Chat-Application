@@ -2,7 +2,8 @@
 import React, { useState, FormEvent } from 'react';
 import './LoginPage.css';
 import { FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UserServices from '../../services/UserServices';
 
 // Define the structure of form data
 interface FormData {
@@ -18,6 +19,9 @@ interface FormErrors {
 
 // Main LoginPage component: Handles user login functionality
 const LoginPage: React.FC = () => {
+
+  const navigate = useNavigate();
+
   // State to hold form data: email and password
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -80,6 +84,13 @@ const LoginPage: React.FC = () => {
     
     try {
       // TODO: Implement login logic here
+      const userData = await UserServices.login(formData.email, formData.password);
+      if (userData.token) {
+        localStorage.setItem('token', userData.token);
+        localStorage.setItem('roles', userData.roles);
+        
+        navigate('/');
+      }
       console.log('Login form submitted:', formData);
       
       // Simulate API call

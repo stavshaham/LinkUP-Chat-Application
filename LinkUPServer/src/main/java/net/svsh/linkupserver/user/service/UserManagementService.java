@@ -8,6 +8,7 @@ import net.svsh.linkupserver.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,16 +35,21 @@ public class UserManagementService {
     public RequestResponse register(RequestResponse registerRequest) {
         RequestResponse registerResponse = new RequestResponse();
 
+        if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
+            registerResponse.setStatusCode(500);
+            registerResponse.setError("Email already in use");
+        }
+
         try {
             System.err.println("Can get here!");
             User user = new User();
             user.setEmail(registerRequest.getEmail());
             user.setUsername(registerRequest.getUsername());
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-            user.setRoles(registerRequest.getRoles());
+            user.setRoles(UserRole.USER);
             System.err.println(user.getEmail() + " " + user.getPassword() + " " + user.getUsername() + " " + user.getRoles());
             User user2 = userRepository.save(user);
-            if (user.getId() > 0) {
+            if (user2.getId() > 0) {
                 System.err.println("Works");
                 registerResponse.setUser(user2);
                 registerResponse.setStatusCode(200);
@@ -60,13 +66,15 @@ public class UserManagementService {
     public RequestResponse login(RequestResponse loginRequest) {
         RequestResponse loginResponse = new RequestResponse();
 
+        System.err.println(loginRequest.getEmail() + " " + loginRequest.getUsername() + " " + loginRequest.getPassword());
+
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
                     loginRequest.getPassword()));
 
-            var user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();
-            var token = jwtUtils.generateToken(user);
-            var refreshedToken = jwtUtils.generateRefreshToken(new HashMap<>(), user);
+            var user2 = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();
+            var token = jwtUtils.generateToken(user2);
+            var refreshedToken = jwtUtils.generateRefreshToken(new HashMap<>(), user2);
             loginResponse.setStatusCode(200);
             loginResponse.setToken(token);
             loginResponse.setRefreshToken(refreshedToken);

@@ -2,7 +2,10 @@
 import React, { useState, FormEvent } from 'react';
 import './RegisterPage.css';
 import { FaUser, FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UserServices from '../../services/UserServices';
+import SuccessAlert from '../alerts/success/SuccessAlert.tsx';
+import ErrorAlert from '../alerts/error/ErrorAlert.tsx';
 
 // Define the structure of form data
 interface FormData {
@@ -46,6 +49,9 @@ interface FormErrors {
 
 // Main RegisterPage component
 const RegisterPage: React.FC = () => {
+
+  const navigate = useNavigate();
+
   // State to hold form data
   const [formData, setFormData] = useState<FormData>({
     username: '',
@@ -62,6 +68,13 @@ const RegisterPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   // State to toggle confirm password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // State to toggle Success alert
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  //State to toggle Error alert
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   /**
    * Function to validate form data.
@@ -139,6 +152,14 @@ const RegisterPage: React.FC = () => {
     }));
   };
 
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+  };
+
+  const handleCloseError = () => {
+      setShowError(false);
+  };
+
   /**
    * Handle form submission.
    * 
@@ -155,17 +176,65 @@ const RegisterPage: React.FC = () => {
 
     setIsLoading(true);
     try {
-      // TODO: Implement registration API call
-      console.log('Form submitted:', formData);
-      // Reset form after successful submission
-      setFormData({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+      // TODO: Implement register logic herehere
+      const token = localStorage.getItem('token');
+
+      // Check if token is null
+      if (token === null) {
+        setErrorMessage('No token found');        
+        return; // Handle the case where token is not available
+      }
+
+      const data = await UserServices.register(formData, token);
+
+      console.log(data);
+      if (data.statusCode === 200) {
+        console.log('Form submitted:', formData);
+        // Reset form after successful submission
+        setFormData({
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: ''
       });
+
+      setSuccessMessage('Registration successful!');
+
+      setShowSuccess(true); // Show success alert
+
+            // Hide the success alert after 5 seconds
+            setTimeout(() => {
+                setShowSuccess(false);
+            }, 5000);
+
+      navigate('/login');
+      } else {
+        var error;
+
+        if (data.error.includes('Duplicate')) {
+          error = "Username/Email already exists";
+        } else {
+          error = "Registration failed";
+        }
+
+        setErrorMessage(`Registration failed: ${error}`); // Custom error message
+        setShowError(true); // Show error alert
+
+            // Hide the error alert after 5 seconds
+            setTimeout(() => {
+                setShowError(false);
+            }, 5000);
+      }
+
     } catch (error) {
       console.error('Registration error:', error);
+      setErrorMessage(`Registration failed!`); // Custom error message
+      setShowError(true); // Show error alert
+
+            // Hide the error alert after 5 seconds
+            setTimeout(() => {
+                setShowError(false);
+            }, 5000);
     } finally {
       setIsLoading(false);
     }
@@ -286,11 +355,16 @@ const RegisterPage: React.FC = () => {
           </button>
         </form>
 
+
         {/* // Login link */}
         <div className="login-link">
           Already have an account? <Link to="/login">Log in</Link>
         </div>
       </div>
+
+      {/* // In the return statement: */}
+      <SuccessAlert message={successMessage} show={showSuccess} onClose={handleCloseSuccess} />
+      <ErrorAlert message={errorMessage} show={showError} onClose={handleCloseError} />
     </div>
   );
 };

@@ -18,7 +18,7 @@ const Header = () => {
             setIsOpen(true);
         }
         document.body.style.overflow = !isOpen ? 'hidden' : 'auto';
-    }
+    };
 
     // Clean up the body style when component unmounts
     React.useEffect(() => {
