@@ -1,0 +1,256 @@
+/* Importing Google Fonts for the application */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset default margins and set height for html and body */
+/* This resets the default margins and sets the height of the html and body elements to 100% of the viewport */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+/* Container for the login page, centered and with a gradient background */
+/* This styles the container for the login page, centering it and applying a gradient background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1E90FF 0%, #4B6CB7 50%, #182848 100%);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background elements for a floating effect */
+/* These styles create the animated background elements that give a floating effect */
+.login-container::before,
+.login-container::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: floatingBubble 20s infinite linear;
+  z-index: 1;
+}
+
+/* Positioning the animated background elements */
+/* These styles position the animated background elements */
+.login-container::before {
+  top: -250px;
+  left: -250px;
+}
+
+.login-container::after {
+  bottom: -250px;
+  right: -250px;
+  animation-delay: -10s;
+}
+
+/* Wrapper for the login form with a semi-transparent background */
+/* This styles the wrapper for the login form, giving it a semi-transparent background */
+.login-form-wrapper {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 2;
+  transform: translateY(0);
+}
+
+/* Hover effect for the login form wrapper */
+/* This styles the hover effect for the login form wrapper */
+.login-form-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Title styling for the login form */
+/* This styles the title of the login form */
+.login-form-wrapper h1 {
+  margin: 0 0 1.5rem;
+  color: #FFFFFF;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Subtitle styling for the login form */
+/* This styles the subtitle of the login form */
+.login-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 35px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Flexbox styling for the login form */
+/* This styles the login form using flexbox */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Grouping form elements */
+/* This groups form elements together */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+}
+
+/* Label styling for form inputs */
+/* This styles the labels for form inputs */
+.form-group label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-left: 0.25rem;
+}
+
+/* Input field styling */
+/* This styles the input fields */
+.form-group input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Input focus styling */
+/* This styles the input fields when they are focused */
+.form-group input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Placeholder styling for input fields */
+/* This styles the placeholders for input fields */
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Icon styling within input fields */
+/* This styles the icons within input fields */
+.form-group .icon {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+/* Password toggle button styling */
+/* This styles the password toggle button */
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+/* Error message styling */
+/* This styles the error messages */
+.error-message {
+  color: #FF6B6B;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+}
+
+/* Submit button styling */
+/* This styles the submit button */
+.submit-button {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+/* Submit button hover effect */
+/* This styles the submit button on hover */
+.submit-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Disabled submit button styling */
+/* This styles the submit button when it is disabled */
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Register link styling */
+/* This styles the register link */
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+/* Register link anchor styling */
+/* This styles the register link anchor */
+.register-link a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+/* Register link hover effect */
+/* This styles the register link on hover */
+.register-link a:hover {
+  opacity: 0.8;
+}
+
+/* Keyframes for gradient animation */
+/* These keyframes create the gradient animation */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Keyframes for floating bubble animation */
+/* These keyframes create the floating bubble animation */
+@keyframes floatingBubble {
+  from { transform: rotate(0deg) translate(50px) rotate(0deg); }
+  to { transform: rotate(360deg) translate(50px) rotate(-360deg); }
+}

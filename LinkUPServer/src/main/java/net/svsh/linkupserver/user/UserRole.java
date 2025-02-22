@@ -1,4 +1,4 @@
-package net.svsh.linkupserver.database.user;
+package net.svsh.linkupserver.user;
 
 public enum UserRole {
     USER,

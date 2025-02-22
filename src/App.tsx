@@ -4,6 +4,7 @@ import Header from './components/header/header.tsx';
 import Footer from './components/footer/Footer.tsx';
 import HomePage from './components/homepage/HomePage.tsx';
 import RegisterPage from "./components/register/RegisterPage.tsx";
+import LoginPage from "./components/login/LoginPage.tsx";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
                     <Route path="/support" element={<HomePage />} />
                     <Route path="/blog" element={<HomePage />} />
                     <Route path="/about" element={<HomePage />} />
-                    <Route path="/login" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                 </Routes>
             <Footer />

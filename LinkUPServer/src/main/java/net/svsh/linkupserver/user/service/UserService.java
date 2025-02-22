@@ -1,6 +1,7 @@
-package net.svsh.linkupserver.user;
+package net.svsh.linkupserver.user.service;
 
 import lombok.AllArgsConstructor;
+import net.svsh.linkupserver.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

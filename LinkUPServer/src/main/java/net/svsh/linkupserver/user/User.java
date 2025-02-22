@@ -1,4 +1,4 @@
-package net.svsh.linkupserver.database.user;
+package net.svsh.linkupserver.user;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -10,7 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 @Getter
 @Setter
@@ -19,15 +20,6 @@ import java.util.Collections;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
     @Id
     @Column(name="id", length = 45)
     private Long id;
@@ -43,27 +35,26 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "roles")
-    private UserRole role;
+    private UserRole roles;
 
-    @Column(name = "locked")
-    private Boolean locked;
-
-    @Column(name = "enabled")
-    private Boolean enabled;
-
-    public User(String username, String email, String password, UserRole role, Boolean locked, Boolean enabled) {
+    public User(Long id, String username, String email, String password, UserRole role) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
-        this.locked = locked;
-        this.enabled = enabled;
+        this.roles = role;
+    }
+
+    public long generateId() {
+        Random r = new Random();
+        long id = 100000000 + r.nextInt(900000000);
+
+        return id;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(this.role.name());
-        return Collections.singletonList(authority);
+        return List.of(new SimpleGrantedAuthority(this.roles.name()));
     }
 
     @Override
@@ -73,7 +64,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override
@@ -83,7 +74,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
     @Override
@@ -93,6 +84,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }

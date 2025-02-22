@@ -1,213 +1,297 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.container {
-    background: rgb(30,144,255);
+.headerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to right, #1E90FF, #4B6CB7);
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
-    margin: 0 auto;
-    padding: 0.5rem 0;
+    padding: 0.75rem 2rem;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
-.logoImage {
-    height: 8vh;
+.left-section {
+    display: flex;
+    align-items: center;
 }
 
 .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
+.logoImage {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.center-section {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .nav {
     display: flex;
-    flex-direction: row;
+    gap: 2.5rem;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
-.nav > span {
-    margin-left: 1rem;
-}
-
-a {
-    text-decoration: none;
+.nav a, .auth-buttons a {
     color: white;
-    font-weight: 400;
+    text-decoration: none;
+    font-weight: 500;
     position: relative;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-family: Poppins, sans-serif;
-    cursor: pointer;
+    opacity: 0.9;
+    letter-spacing: 0.2px;
+    transition: all 0.3s ease;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+    background: transparent !important;
 }
 
-a:before {
+.nav a::after, .auth-buttons a::after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
+    width: 100%;
     height: 2px;
-    background: white;
-    bottom: -5px;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .4s ease-in-out;
-}
-
-a:hover:before {
-    transform: scale(1);
-    transform-origin: left;
-}
-
-a:hover {
-    opacity: 0.7;
-}
-
-.smallNav {
-    display: none;
-}
-
-.smallNavHidden {
-    position: absolute;
-    background: rgb(30,144,255);
-    top: 0;
+    bottom: -4px;
     left: 0;
-    right: 0;
-    bottom: 0;
-    height: 0;
-    transition: height .4s ease-in-out;
-    overflow: hidden;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
 }
 
-.test {
-    position: absolute;
-    width: 100px;
-    height: 100px;
+.nav a:focus, .auth-buttons a:focus,
+.nav a:focus-visible, .auth-buttons a:focus-visible,
+.nav a:active, .auth-buttons a:active,
+.nav a:hover, .auth-buttons a:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+    background: transparent !important;
 }
 
-.active {
-    opacity: 0.7;
+.nav a:hover, .auth-buttons a:hover {
+    color: #FFFFFF;
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
-.show {
-    display: none;
+.nav a:hover::after, .auth-buttons a:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
 }
 
-.hide {
-    display: none;
+.nav a.active, .auth-buttons a.active {
+    color: #FFFFFF !important;
+    font-weight: 600;
+    opacity: 1 !important;
+    background: transparent !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.nav a.active::after, .auth-buttons a.active::after {
+    transform: scaleX(1) !important;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 .bars {
     display: none;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.2s ease;
+    z-index: 1001;
+    position: relative;
+    width: 40px;
+    height: 40px;
 }
 
-@media (max-width: 763px) {
-    .nav {
-        position: absolute;
+.bar, .barClose {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    left: 5px;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+    transform-origin: center;
+}
+
+.bar:nth-child(1) {
+    top: 12px;
+}
+
+.bar:nth-child(2) {
+    top: 12px;
+}
+
+.bar:nth-child(3) {
+    top: 12px;
+}
+
+.barClose:nth-child(1) {
+    top: 19px;
+    transform: rotate(45deg);
+}
+
+.barClose:nth-child(2) {
+    opacity: 0;
+}
+
+.barClose:nth-child(3) {
+    top: 19px;
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .headerContainer {
+        padding: 0.75rem 1rem;
+    }
+
+    .center-section {
         display: none;
     }
 
-    .smallNav {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        background: rgb(30,144,255);
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        gap: 2rem;
-        font-weight: 700;
-        height: 100%;
-        transition: height .4s ease-in-out;
-        overflow: hidden;
-    }
-
-    .show {
-        display: block;
-    }
-
-    .hide {
+    .auth-buttons {
         display: none;
-    }
-
-    .smallNavHidden {
-        position: absolute;
-        background: rgb(30,144,255);
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 0;
-        transition: height .4s ease-in-out;
-        overflow: hidden;
     }
 
     .bars {
-        height: 30px;
-        width: 30px;
-        margin-right: 1rem;
-        position: relative;
+        display: block;
+        margin-left: 0.5rem;
+    }
+
+    .smallNav {
+        position: fixed;
         display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
+        background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 1000;
+        padding: 2rem;
+        animation: slideIn 0.2s ease-in-out;
     }
 
-    .container {
-        justify-content: space-between;
+    .smallNav a {
+        font-size: 1.8rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-family: Poppins, sans-serif;
+        opacity: 0.9;
+        letter-spacing: 0.2px;
+        transition: all 0.2s ease;
+        padding: 0.5rem;
     }
+
+    .smallNav a:hover {
+        opacity: 1;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .smallNav a.active {
+        color: #FFFFFF !important;
+        font-weight: 600;
+        opacity: 1 !important;
+    }
+
+    .smallNavHidden {
+        animation: slideOut 0.2s ease-in-out;
+    }
+}
+
+@media (max-width: 380px) {
+    .headerContainer {
+        padding: 0.75rem;
+    }
+
     .logoImage {
-        margin-left: 1rem;
+        height: 35px;
     }
 
-    .bars > .bar {
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        background: white;
+    .smallNav a {
+        font-size: 1.3rem;
     }
+}
 
-    .bars > .bar:before {
-        content: '';
-        width: 100%;
-        height: 2px;
-        background: white;
-        position: absolute;
-        transform: translateY(10px);
-        transition: all 0.4s ease-in-out;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
     }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-    .bars > .bar:after {
-        content: '';
-        width: 100%;
-        height: 2px;
-        background: white;
-        position: absolute;
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
         transform: translateY(-10px);
-        transition: all 0.4s ease-in-out;
     }
-
-    .bars > .barClose:before {
-        content: '';
-        width: 100%;
-        height: 2px;
-        background: white;
-        position: absolute;
-        transform: rotate(45deg);
-        transition: all 0.4s ease-in-out;
-    }
-
-    .bars > .barClose:after {
-        content: '';
-        width: 100%;
-        height: 2px;
-        background: white;
-        position: absolute;
-        transform: rotate(-45deg);
-        transition: all 0.4s ease-in-out;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

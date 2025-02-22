@@ -1,50 +1,147 @@
 import './header.css';
 import logo from '../../assets/logo-updated.png'
 import * as React from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
+    const [isClosing, setIsClosing] = React.useState(false);
 
     const changeStyle = () => {
-        console.log("click");
-        setIsOpen(!isOpen);
+        if (isOpen) {
+            setIsClosing(true);
+            setTimeout(() => {
+                setIsOpen(false);
+                setIsClosing(false);
+            }, 200); // Match this with the animation duration
+        } else {
+            setIsOpen(true);
+        }
+        document.body.style.overflow = !isOpen ? 'hidden' : 'auto';
     }
 
+    // Clean up the body style when component unmounts
+    React.useEffect(() => {
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
+
     return (
-        <div className='container'>
-            <div className='logo'>
-                <img src={logo} alt='logo' className='logoImage' />
-            </div>
+        <header>
+            <nav className='headerContainer'>
+                <div className='left-section'>
+                    <div className='logo'>
+                        <img src={logo} alt='logo' className='logoImage' />
+                    </div>
+                </div>
 
-            <div className='nav'>
-                <span><Link to='/' className={'active'}>Home</Link></span>
-                <span><Link to='/support'>Support</Link></span>
-                <span><Link to='/blog'>Blog</Link></span>
-                <span><Link to='/about'>About us</Link></span>
-            </div>
+                <div className='center-section'>
+                    <div className='nav'>
+                        <NavLink 
+                            to='/' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            style={{ outline: 'none' }}
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink 
+                            to='/support' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            style={{ outline: 'none' }}
+                        >
+                            Support
+                        </NavLink>
+                        <NavLink 
+                            to='/blog' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            style={{ outline: 'none' }}
+                        >
+                            Blog
+                        </NavLink>
+                        <NavLink 
+                            to='/about' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            style={{ outline: 'none' }}
+                        >
+                            About us
+                        </NavLink>
+                    </div>
+                </div>
 
-            <div className='nav'>
-                <span><Link to='/login'>Login</Link></span>
-                <span><Link to='/register'>Register</Link></span>
-            </div>
+                <div className='right-section'>
+                    <div className='auth-buttons'>
+                        <NavLink 
+                            to='/login' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            style={{ outline: 'none' }}
+                        >
+                            Login
+                        </NavLink>
+                        <NavLink 
+                            to='/register' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            style={{ outline: 'none' }}
+                        >
+                            Register
+                        </NavLink>
+                    </div>
+                    <button className='bars' onClick={changeStyle}>
+                        <div className={isOpen ? 'barClose' : 'bar'}></div>
+                        <div className={isOpen ? 'barClose' : 'bar'}></div>
+                        <div className={isOpen ? 'barClose' : 'bar'}></div>
+                    </button>
+                </div>
 
-            <div className={isOpen ? 'smallNav' : 'smallNavHidden'}>
-                <span><Link to='/' className={isOpen ? 'show' : 'hide'}>Home</Link></span>
-                <span><Link to='/support' className={isOpen ? 'show' : 'hide'}>Support</Link></span>
-                <span><Link to='/blog' className={isOpen ? 'show' : 'hide'}>Blog</Link></span>
-                <span><Link to='/about' className={isOpen ? 'show' : 'hide'}>About us</Link></span>
-                <span><Link to='/login' className={isOpen ? 'show' : 'hide'}>Login</Link></span>
-                <span><Link to='/register' className={isOpen ? 'show' : 'hide'}>Register</Link></span>
-            </div>
-
-            <div className='bars' onClick={changeStyle}>
-                <div className={isOpen ? 'barClose' : 'bar'}></div>
-                <div className={isOpen ? 'barClose' : 'bar'}></div>
-                <div className={isOpen ? 'barClose' : 'bar'}></div>
-            </div>
-        </div>
+                {(isOpen || isClosing) && (
+                    <div className={`smallNav ${isClosing ? 'smallNavHidden' : ''}`}>
+                        <NavLink 
+                            to='/' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            onClick={changeStyle}
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink 
+                            to='/support' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            onClick={changeStyle}
+                        >
+                            Support
+                        </NavLink>
+                        <NavLink 
+                            to='/blog' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            onClick={changeStyle}
+                        >
+                            Blog
+                        </NavLink>
+                        <NavLink 
+                            to='/about' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            onClick={changeStyle}
+                        >
+                            About us
+                        </NavLink>
+                        <NavLink 
+                            to='/login' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            onClick={changeStyle}
+                        >
+                            Login
+                        </NavLink>
+                        <NavLink 
+                            to='/register' 
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            onClick={changeStyle}
+                        >
+                            Register
+                        </NavLink>
+                    </div>
+                )}
+            </nav>
+        </header>
     );
-};
+}
 
 export default Header;
