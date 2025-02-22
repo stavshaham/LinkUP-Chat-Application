@@ -21,7 +21,7 @@ public class JWTUtils {
 
     // Generating the secret key
     public JWTUtils() {
-        String secretKey = "SECRET_KEY";
+        String secretKey = "your_secret_key";
         byte[] keyBytes = Base64.getDecoder().decode(secretKey.getBytes(StandardCharsets.UTF_8));
         this.SECRET_KEY = new SecretKeySpec(keyBytes, "HmacSHA256");
     }
