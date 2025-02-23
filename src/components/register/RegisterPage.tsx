@@ -268,7 +268,6 @@ const RegisterPage: React.FC = () => {
           {/* // Username input field */}
           <div className="form-group">
             <div className="input-with-icon">
-              <FaUser className="input-icon" />
               <input
                 type="text"
                 name="username"
@@ -277,15 +276,14 @@ const RegisterPage: React.FC = () => {
                 placeholder="Username"
                 className={errors.username ? 'error' : ''}
               />
+              <FaUser className="input-icon" />
             </div>
-            {/* // Display username error message if exists */}
             {errors.username && <span className="error-message">{errors.username}</span>}
           </div>
 
           {/* // Email input field */}
           <div className="form-group">
             <div className="input-with-icon">
-              <FaEnvelope className="input-icon" />
               <input
                 type="email"
                 name="email"
@@ -294,15 +292,14 @@ const RegisterPage: React.FC = () => {
                 placeholder="Email Address"
                 className={errors.email ? 'error' : ''}
               />
+              <FaEnvelope className="input-icon" />
             </div>
-            {/* // Display email error message if exists */}
             {errors.email && <span className="error-message">{errors.email}</span>}
           </div>
 
           {/* // Password input field */}
           <div className="form-group">
             <div className="input-with-icon">
-              <FaLock className="input-icon" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -311,7 +308,6 @@ const RegisterPage: React.FC = () => {
                 placeholder="Password"
                 className={errors.password ? 'error' : ''}
               />
-              {/* // Toggle password visibility button */}
               <button
                 type="button"
                 className="toggle-password"
@@ -320,14 +316,12 @@ const RegisterPage: React.FC = () => {
                 {showPassword ? <FaLockOpen /> : <FaLock />}
               </button>
             </div>
-            {/* // Display password error message if exists */}
             {errors.password && <span className="error-message">{errors.password}</span>}
           </div>
 
           {/* // Confirm password input field */}
           <div className="form-group">
             <div className="input-with-icon">
-              <FaLock className="input-icon" />
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
@@ -336,7 +330,6 @@ const RegisterPage: React.FC = () => {
                 placeholder="Confirm Password"
                 className={errors.confirmPassword ? 'error' : ''}
               />
-              {/* // Toggle confirm password visibility button */}
               <button
                 type="button"
                 className="toggle-password"
@@ -345,7 +338,6 @@ const RegisterPage: React.FC = () => {
                 {showConfirmPassword ? <FaLockOpen /> : <FaLock />}
               </button>
             </div>
-            {/* // Display confirm password error message if exists */}
             {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
           </div>
 

@@ -1,0 +1,440 @@
+/* HomePage Component Styles
+ * 
+ * This file contains all styles for the homepage including:
+ * - Hero section
+ * - Features section
+ * - How it works section
+ * - Call to action section
+ * - Responsive design
+ * - Animations and transitions
+ */
+
+/* Main Container */
+.homepage {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section Styles */
+/* 
+ * Hero section styles include background, text color, padding, and text alignment.
+ * The hero section is the main section of the homepage that contains the main heading and call to action buttons.
+ */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+    color: white;
+    min-height: 80vh;
+}
+
+/* 
+ * Hero content styles include max-width and margin to center the content horizontally.
+ */
+.hero-content {
+    max-width: 600px;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* 
+ * Hero heading styles include font size, margin, and line height.
+ */
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+/* 
+ * Hero paragraph styles include font size, margin, and opacity.
+ */
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* 
+ * Hero buttons styles include display, gap, and padding.
+ */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* 
+ * Button styles include padding, border radius, font weight, text decoration, and transition.
+ */
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* 
+ * Primary button styles include background color and color.
+ */
+.btn-primary {
+    background-color: white;
+    color: #1E90FF;
+}
+
+/* 
+ * Primary button hover styles include transform and box shadow.
+ */
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+ * Secondary button styles include border and color.
+ */
+.btn-secondary {
+    border: 2px solid white;
+    color: white;
+}
+
+/* 
+ * Secondary button hover styles include background color and color.
+ */
+.btn-secondary:hover {
+    background-color: white;
+    color: #1E90FF;
+}
+
+/* 
+ * Hero image styles include max-width and animation.
+ */
+.hero-image {
+    max-width: 500px;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* 
+ * Hero image styles include width and height.
+ */
+.hero-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Features Section Styles */
+/* 
+ * Features section styles include padding and background color.
+ * The features section is the section that contains the features of the product or service.
+ */
+.features {
+    padding: 6rem 2rem;
+    background-color: #f8f9fa;
+}
+
+/* 
+ * Features heading styles include text alignment, font size, margin, and color.
+ */
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+/* 
+ * Features grid styles include display, grid template columns, gap, max-width, and margin.
+ */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 
+ * Feature card styles include background, padding, border radius, text alignment, and transition.
+ */
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 
+ * Feature card hover styles include transform.
+ */
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+/* 
+ * Feature card icon styles include font size, color, and margin.
+ */
+.feature-card i {
+    font-size: 2.5rem;
+    color: #1E90FF;
+    margin-bottom: 1.5rem;
+}
+
+/* 
+ * Feature card heading styles include font size, margin, and color.
+ */
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* 
+ * Feature card paragraph styles include color and line height.
+ */
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* How It Works Section Styles */
+/* 
+ * How it works section styles include padding and background color.
+ * The how it works section is the section that explains how the product or service works.
+ */
+.how-it-works {
+    padding: 6rem 2rem;
+    background-color: white;
+}
+
+/* 
+ * How it works heading styles include text alignment, font size, margin, and color.
+ */
+.how-it-works h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+/* 
+ * Steps container styles include display, justify content, align items, max-width, and margin.
+ */
+.steps-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 0;
+    position: relative;
+}
+
+/* 
+ * Step styles include text alignment, flex, padding, border radius, box shadow, and position.
+ */
+.step {
+    text-align: center;
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+/* 
+ * Step connector styles include height, flex, background, and position.
+ */
+.step-connector {
+    height: 2px;
+    flex: 0.5;
+    background: linear-gradient(90deg, #1E90FF, #4B6CB7);
+    position: relative;
+    z-index: 0;
+}
+
+/* 
+ * Step connector before styles include content, position, top, left, right, height, background, transform, and opacity.
+ */
+.step-connector::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: inherit;
+    transform: translateY(-50%);
+    opacity: 0.3;
+}
+
+/* 
+ * Step number styles include width, height, background, color, border radius, display, align items, justify content, font size, font weight, margin, and position.
+ */
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #1E90FF;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* 
+ * Step heading styles include color, margin, and font size.
+ */
+.step h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* 
+ * Step paragraph styles include color, font size, and line height.
+ */
+.step p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* CTA Section Styles */
+/* 
+ * CTA section styles include padding, background, color, and text alignment.
+ * The CTA section is the section that contains the call to action button.
+ */
+.cta {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+    color: white;
+    text-align: center;
+}
+
+/* 
+ * CTA content styles include max-width and margin.
+ */
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 
+ * CTA heading styles include font size and margin.
+ */
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 
+ * CTA paragraph styles include font size, margin, and opacity.
+ */
+.cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Animations */
+/* 
+ * Fade in up animation styles include keyframes.
+ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 
+ * Float animation styles include keyframes.
+ */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Responsive Design */
+/* 
+ * Responsive design styles include media queries for different screen sizes.
+ */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 4rem 1.5rem;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .cta h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .cta h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+    }
+}

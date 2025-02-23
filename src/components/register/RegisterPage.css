@@ -61,6 +61,7 @@ html, body {
   position: relative;
   z-index: 2;
   transform: translateY(0);
+  color: #000000;
 }
 
 .register-form-wrapper:hover {
@@ -102,69 +103,57 @@ html, body {
 
 .input-with-icon {
   position: relative;
-  display: flex;
-  align-items: center;
+  width: 100%;
 }
 
 .input-icon {
   position: absolute;
-  left: 16px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-}
-
-.toggle-password {
-  position: absolute;
   right: 16px;
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4B6CB7;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  z-index: 2;
+  pointer-events: none;
 }
 
-.toggle-password:hover {
-  color: #FFFFFF;
-  transform: scale(1.1);
+.form-group:focus-within .input-icon {
+  color: #1E90FF;
 }
 
 .form-group input {
   width: 100%;
-  padding: 1rem 1.25rem;
-  padding-left: 3rem;
+  padding: 1rem 2.5rem 1rem 1.25rem;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.08);
-  color: #FFFFFF;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
   font-weight: 400;
   letter-spacing: 0.3px;
+  -webkit-text-fill-color: #000000 !important;
 }
 
 .form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #666;
   font-weight: 300;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+  border-color: #1E90FF;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.1);
 }
 
-.form-group:focus-within .input-icon {
-  color: #FFFFFF;
-  transform: scale(1.1);
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-group input.error {
@@ -181,6 +170,34 @@ html, body {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #4B6CB7;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+  color: #1E90FF;
+}
+
+/* Move the icon to the left for password fields since they have the toggle button */
+.form-group input[type="password"] ~ .input-icon,
+.form-group input[type="text"][name="password"] ~ .input-icon,
+.form-group input[type="text"][name="confirmPassword"] ~ .input-icon {
+  right: 48px;
 }
 
 .register-button {

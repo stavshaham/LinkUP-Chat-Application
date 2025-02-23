@@ -1,0 +1,395 @@
+/* AboutPage Component Styles
+ * 
+ * This file contains all styles for the about page including:
+ * - Hero section
+ * - Developer profile section
+ * - Project vision section
+ * - Technical skills section
+ * - Contact section
+ * - Animations and transitions
+ * - Responsive design adjustments
+ */
+
+/* Main Container */
+.about-page {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section Styles */
+.about-hero {
+    /* Hero section background gradient */
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+    /* Hero section text color */
+    color: white;
+    /* Hero section padding */
+    padding: 6rem 2rem;
+    /* Hero section text alignment */
+    text-align: center;
+    /* Hero section position */
+    position: relative;
+}
+
+.about-hero-content {
+    /* Hero content max width */
+    max-width: 800px;
+    /* Hero content margin */
+    margin: 0 auto;
+    /* Hero content animation */
+    animation: fadeInUp 0.8s ease;
+}
+
+.about-hero h1 {
+    /* Hero heading font size */
+    font-size: 3rem;
+    /* Hero heading margin bottom */
+    margin-bottom: 1rem;
+    /* Hero heading font weight */
+    font-weight: 700;
+}
+
+.about-hero p {
+    /* Hero paragraph font size */
+    font-size: 1.3rem;
+    /* Hero paragraph opacity */
+    opacity: 0.9;
+}
+
+/* Section Styles */
+.about-section {
+    /* Section padding */
+    padding: 5rem 2rem;
+}
+
+.section-content {
+    /* Section content max width */
+    max-width: 1200px;
+    /* Section content margin */
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    /* Section heading font size */
+    font-size: 2.2rem;
+    /* Section heading text alignment */
+    text-align: center;
+    /* Section heading margin bottom */
+    margin-bottom: 3rem;
+    /* Section heading color */
+    color: #333;
+}
+
+/* Developer Section */
+.developer-section {
+    /* Developer section background color */
+    background-color: white;
+}
+
+.developer-profile {
+    /* Developer profile display */
+    display: flex;
+    /* Developer profile alignment */
+    align-items: center;
+    /* Developer profile gap */
+    gap: 3rem;
+    /* Developer profile max width */
+    max-width: 900px;
+    /* Developer profile margin */
+    margin: 0 auto;
+}
+
+.developer-photo {
+    /* Developer photo flex */
+    flex: 0 0 300px;
+    /* Developer photo height */
+    height: 300px;
+    /* Developer photo border radius */
+    border-radius: 15px;
+    /* Developer photo overflow */
+    overflow: hidden;
+    /* Developer photo box shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.developer-photo img {
+    /* Developer photo image width */
+    width: 100%;
+    /* Developer photo image height */
+    height: 100%;
+    /* Developer photo image object fit */
+    object-fit: cover;
+}
+
+.developer-info {
+    /* Developer info flex */
+    flex: 1;
+}
+
+.developer-info h3 {
+    /* Developer info heading font size */
+    font-size: 1.8rem;
+    /* Developer info heading margin bottom */
+    margin-bottom: 1.5rem;
+    /* Developer info heading color */
+    color: #333;
+}
+
+.developer-info p {
+    /* Developer info paragraph font size */
+    font-size: 1.1rem;
+    /* Developer info paragraph line height */
+    line-height: 1.8;
+    /* Developer info paragraph color */
+    color: #666;
+}
+
+/* Vision Section */
+.vision-section {
+    /* Vision section background color */
+    background-color: #f8f9fa;
+}
+
+.vision-grid {
+    /* Vision grid display */
+    display: grid;
+    /* Vision grid template columns */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Vision grid gap */
+    gap: 2rem;
+}
+
+.vision-card {
+    /* Vision card background */
+    background: white;
+    /* Vision card padding */
+    padding: 2rem;
+    /* Vision card border radius */
+    border-radius: 15px;
+    /* Vision card text alignment */
+    text-align: center;
+    /* Vision card transition */
+    transition: transform 0.3s ease;
+    /* Vision card box shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.vision-card:hover {
+    /* Vision card hover transform */
+    transform: translateY(-5px);
+}
+
+.vision-card i {
+    /* Vision card icon font size */
+    font-size: 2.5rem;
+    /* Vision card icon color */
+    color: #1E90FF;
+    /* Vision card icon margin bottom */
+    margin-bottom: 1.5rem;
+}
+
+.vision-card h3 {
+    /* Vision card heading font size */
+    font-size: 1.4rem;
+    /* Vision card heading margin bottom */
+    margin-bottom: 1rem;
+    /* Vision card heading color */
+    color: #333;
+}
+
+.vision-card p {
+    /* Vision card paragraph color */
+    color: #666;
+    /* Vision card paragraph line height */
+    line-height: 1.6;
+}
+
+/* Skills Section */
+.skills-section {
+    /* Skills section background color */
+    background-color: white;
+}
+
+.skills-grid {
+    /* Skills grid display */
+    display: grid;
+    /* Skills grid template columns */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Skills grid gap */
+    gap: 3rem;
+}
+
+.skill-category {
+    /* Skill category text alignment */
+    text-align: center;
+}
+
+.skill-category h3 {
+    /* Skill category heading font size */
+    font-size: 1.4rem;
+    /* Skill category heading color */
+    color: #333;
+    /* Skill category heading margin bottom */
+    margin-bottom: 1.5rem;
+    /* Skill category heading padding bottom */
+    padding-bottom: 0.5rem;
+    /* Skill category heading border bottom */
+    border-bottom: 2px solid #1E90FF;
+    /* Skill category heading display */
+    display: inline-block;
+}
+
+.skill-category ul {
+    /* Skill category unordered list style */
+    list-style: none;
+    /* Skill category unordered list padding */
+    padding: 0;
+}
+
+.skill-category li {
+    /* Skill category list item font size */
+    font-size: 1.1rem;
+    /* Skill category list item color */
+    color: #666;
+    /* Skill category list item margin bottom */
+    margin-bottom: 0.8rem;
+    /* Skill category list item padding */
+    padding: 0.5rem;
+    /* Skill category list item background */
+    background: #f8f9fa;
+    /* Skill category list item border radius */
+    border-radius: 5px;
+    /* Skill category list item transition */
+    transition: all 0.3s ease;
+}
+
+.skill-category li:hover {
+    /* Skill category list item hover background */
+    background: #e9ecef;
+    /* Skill category list item hover transform */
+    transform: translateX(5px);
+}
+
+/* Contact Section */
+.contact-section {
+    /* Contact section background gradient */
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+    /* Contact section text color */
+    color: white;
+    /* Contact section text alignment */
+    text-align: center;
+}
+
+.contact-section h2 {
+    /* Contact section heading color */
+    color: white;
+}
+
+.contact-section p {
+    /* Contact section paragraph font size */
+    font-size: 1.2rem;
+    /* Contact section paragraph margin bottom */
+    margin-bottom: 2rem;
+    /* Contact section paragraph opacity */
+    opacity: 0.9;
+}
+
+.social-links {
+    /* Social links display */
+    display: flex;
+    /* Social links justify content */
+    justify-content: center;
+    /* Social links gap */
+    gap: 2rem;
+}
+
+.social-links a {
+    /* Social links color */
+    color: white;
+    /* Social links font size */
+    font-size: 2rem;
+    /* Social links transition */
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    /* Social links hover transform */
+    transform: translateY(-5px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    /* Fade in up animation from */
+    from {
+        /* Fade in up animation opacity */
+        opacity: 0;
+        /* Fade in up animation transform */
+        transform: translateY(20px);
+    }
+    /* Fade in up animation to */
+    to {
+        /* Fade in up animation opacity */
+        opacity: 1;
+        /* Fade in up animation transform */
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    /* Developer profile flex direction */
+    .developer-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Developer photo max width */
+    .developer-photo {
+        flex: 0 0 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hero section padding */
+    .about-hero {
+        padding: 4rem 1.5rem;
+    }
+
+    /* Hero heading font size */
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Section padding */
+    .about-section {
+        padding: 4rem 1.5rem;
+    }
+
+    /* Vision grid template columns */
+    .vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Skills grid template columns */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Hero heading font size */
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+
+    /* Hero paragraph font size */
+    .about-hero p {
+        font-size: 1.1rem;
+    }
+
+    /* Developer photo flex */
+    .developer-photo {
+        flex: 0 0 200px;
+        height: 200px;
+    }
+}

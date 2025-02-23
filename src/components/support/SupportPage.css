@@ -1,0 +1,409 @@
+/* SupportPage Component Styles
+ * 
+ * This file contains all styles for the support page including:
+ * - Hero section
+ * - Quick help section with cards
+ * - FAQ section with accordion
+ * - Contact form section
+ * - Animations and transitions
+ * - Responsive design adjustments
+ */
+
+/* Main Container */
+.support-page {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section Styles */
+.support-hero {
+    /* Hero section background gradient */
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+    color: white;
+    /* Hero section padding */
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.hero-content {
+    /* Hero content max width */
+    max-width: 800px;
+    margin: 0 auto;
+    /* Hero content animation */
+    animation: fadeIn 0.8s ease;
+}
+
+.hero-content h1 {
+    /* Hero title font size */
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    /* Hero description font size and opacity */
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Container */
+.support-container {
+    /* Container max width */
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Container padding */
+    padding: 3rem 2rem;
+}
+
+/* Quick Help Section Styles */
+.quick-help {
+    /* Quick help section margin bottom */
+    margin-bottom: 4rem;
+}
+
+.help-cards {
+    /* Help cards display and grid template columns */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    /* Help cards margin top */
+    margin-top: 2rem;
+}
+
+.help-card {
+    /* Help card background and padding */
+    background: white;
+    padding: 2rem;
+    /* Help card border radius and box shadow */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    /* Help card text align and transition */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.help-card:hover {
+    /* Help card hover transform */
+    transform: translateY(-5px);
+}
+
+.help-card i {
+    /* Help card icon font size and color */
+    font-size: 2.5rem;
+    color: #1E90FF;
+    /* Help card icon margin bottom */
+    margin-bottom: 1.5rem;
+}
+
+.help-card h3 {
+    /* Help card title font size and color */
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.help-card p {
+    /* Help card description color and margin bottom */
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.help-link {
+    /* Help link color and text decoration */
+    color: #1E90FF;
+    text-decoration: none;
+    /* Help link font weight and transition */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.help-link:hover {
+    /* Help link hover color */
+    color: #4B6CB7;
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    /* FAQ section margin bottom */
+    margin-bottom: 4rem;
+}
+
+.faq-section h2 {
+    /* FAQ title text align and font size */
+    text-align: center;
+    font-size: 2.2rem;
+    /* FAQ title margin bottom and color */
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.faq-container {
+    /* FAQ container max width and margin */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    /* FAQ item background and border radius */
+    background: white;
+    border-radius: 10px;
+    /* FAQ item margin bottom and box shadow */
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    /* FAQ question padding and cursor */
+    padding: 1.5rem;
+    cursor: pointer;
+    /* FAQ question display and justify content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question h3 {
+    /* FAQ question title font size and color */
+    font-size: 1.1rem;
+    color: #333;
+    /* FAQ question title margin */
+    margin: 0;
+}
+
+.faq-question i {
+    /* FAQ question icon color and transition */
+    color: #1E90FF;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: white;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-answer {
+    padding: 1.5rem;
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer p {
+    /* FAQ answer description color and line height */
+    color: #666;
+    line-height: 1.6;
+    /* FAQ answer description margin */
+    margin: 0;
+}
+
+/* Contact Form Section Styles */
+.contact-section {
+    /* Contact section background and padding */
+    background: #f8f9fa;
+    padding: 4rem 2rem;
+    /* Contact section border radius and box shadow */
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    /* Contact section max width and margin */
+    max-width: 800px;
+    margin: 4rem auto;
+    /* Contact section text align */
+    text-align: center;
+}
+
+.contact-section h2 {
+    /* Contact title font size and margin bottom */
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    /* Contact title color and position */
+    color: #333;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-section h2:after {
+    /* Contact title after content and position */
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Contact title after width and height */
+    width: 50px;
+    height: 3px;
+    /* Contact title after background and border radius */
+    background: linear-gradient(90deg, #1E90FF, #4B6CB7);
+    border-radius: 2px;
+}
+
+.contact-section > p {
+    /* Contact description color and margin bottom */
+    color: #666;
+    margin-bottom: 3rem;
+    /* Contact description font size */
+    font-size: 1.1rem;
+}
+
+.contact-form {
+    /* Contact form text align and max width */
+    text-align: left;
+    max-width: 600px;
+    /* Contact form margin and background */
+    margin: 0 auto;
+    background: white;
+    /* Contact form padding and border radius */
+    padding: 2rem;
+    border-radius: 15px;
+    /* Contact form box shadow */
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    /* Form group margin bottom and position */
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+    /* Form input and textarea width and padding */
+    width: 100%;
+    padding: 1rem 1.2rem;
+    /* Form input and textarea border and border radius */
+    border: 2px solid #eee;
+    border-radius: 10px;
+    /* Form input and textarea font size and transition */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    /* Form input and textarea background and box sizing */
+    background: #f8f9fa;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    /* Form textarea min height and max height */
+    min-height: 100px;
+    max-height: 200px;
+    /* Form textarea resize and overflow */
+    resize: vertical;
+    overflow-y: auto;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    /* Form input and textarea focus outline and border color */
+    outline: none;
+    border-color: #1E90FF;
+    /* Form input and textarea focus background and box shadow */
+    background: white;
+    box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    /* Form input and textarea placeholder color */
+    color: #999;
+}
+
+.submit-button {
+    /* Submit button width and padding */
+    width: 100%;
+    padding: 1.2rem;
+    /* Submit button background and color */
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+    color: white;
+    /* Submit button border and border radius */
+    border: none;
+    border-radius: 10px;
+    /* Submit button font size and font weight */
+    font-size: 1.1rem;
+    font-weight: 600;
+    /* Submit button cursor and transition */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Submit button margin top and position */
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button:hover {
+    /* Submit button hover transform and box shadow */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.3);
+    /* Submit button hover background */
+    background: linear-gradient(135deg, #47A3FF, #6384D3);
+}
+
+.submit-button:active {
+    /* Submit button active transform and background */
+    transform: translateY(0);
+    background: linear-gradient(135deg, #1E90FF, #4B6CB7);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    /* Fade in animation from and to */
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Responsive design for max width 768px */
+    .support-hero {
+        /* Hero section padding */
+        padding: 4rem 1.5rem;
+    }
+
+    .hero-content h1 {
+        /* Hero title font size */
+        font-size: 2.5rem;
+    }
+
+    .support-container {
+        /* Container padding */
+        padding: 2rem 1.5rem;
+    }
+
+    .help-cards {
+        /* Help cards grid template columns */
+        grid-template-columns: 1fr;
+    }
+
+    .faq-question h3 {
+        /* FAQ question title font size */
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Responsive design for max width 480px */
+    .hero-content h1 {
+        /* Hero title font size */
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        /* Hero description font size */
+        font-size: 1.1rem;
+    }
+
+    .contact-section h2 {
+        /* Contact title font size */
+        font-size: 1.8rem;
+    }
+}

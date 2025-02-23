@@ -34,6 +34,12 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   // State to toggle password visibility: true when password is visible
   const [showPassword, setShowPassword] = useState(false);
+  // State to toggle Success alert
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  //State to toggle Error alert
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Function to validate form data: checks for email and password validity
   const validateForm = (): boolean => {
@@ -69,6 +75,14 @@ const LoginPage: React.FC = () => {
     }));
   };
 
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+  };
+
+  const handleCloseError = () => {
+    setShowError(false);
+  };
+
   // Handle form submission: handles login functionality
   const handleSubmit = async (e: FormEvent) => {
     // Prevent default form submission behavior
@@ -89,7 +103,16 @@ const LoginPage: React.FC = () => {
         localStorage.setItem('token', userData.token);
         localStorage.setItem('roles', userData.roles);
         
-        navigate('/');
+        setSuccessMessage('Login successful!');
+
+        setShowSuccess(true); // Show success alert
+
+              // Hide the success alert after 5 seconds
+              setTimeout(() => {
+                  setShowSuccess(false);
+              }, 5000);
+
+        navigate('/chats');
       }
       console.log('Login form submitted:', formData);
       
@@ -102,6 +125,13 @@ const LoginPage: React.FC = () => {
       setErrors({
         email: 'Invalid email or password'
       });
+      setErrorMessage(`Login failed: Invalid email or password`); // Custom error message
+        setShowError(true); // Show error alert
+
+            // Hide the error alert after 5 seconds
+            setTimeout(() => {
+                setShowError(false);
+            }, 5000);
     } finally {
       // Set loading state to false
       setIsLoading(false);
@@ -140,7 +170,6 @@ const LoginPage: React.FC = () => {
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <div className="input-with-icon">
-              <FaLock className="icon" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
