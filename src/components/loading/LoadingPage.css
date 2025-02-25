@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap');
+
+/* Container styles */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh; /* For mobile browsers */
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f5f7fb 0%, #ffffff 100%);
+}
+
+/* Content wrapper */
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vh, 24px);
+  width: 100%;
+  max-width: 400px;
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: clamp(12px, 2vw, 16px);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Spinner container */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: clamp(8px, 2vw, 16px);
+}
+
+/* Text container */
+.loading-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 2vh, 16px);
+  width: 100%;
+  text-align: center;
+}
+
+/* Typography */
+.loading-content h2 {
+  margin: 0;
+  color: #1677ff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #1677ff 0%, #36a1ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(22, 119, 255, 0.1);
+  white-space: nowrap;
+}
+
+.loading-content p {
+  margin: 0;
+  color: #666;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(14px, 3vw, 16px);
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.2px;
+  line-height: 1.5;
+}
+
+/* Animations */
+.loading-content {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 480px) {
+  .loading-content {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-content {
+    animation: none;
+  }
+}

@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/validate-token").permitAll()
                         .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/users/**").permitAll()
                         .anyRequest().authenticated())

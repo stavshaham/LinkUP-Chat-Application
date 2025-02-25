@@ -38,6 +38,7 @@ public class UserManagementService {
         if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
             registerResponse.setStatusCode(500);
             registerResponse.setError("Email already in use");
+            return registerResponse;
         }
 
         try {
@@ -66,8 +67,6 @@ public class UserManagementService {
     public RequestResponse login(RequestResponse loginRequest) {
         RequestResponse loginResponse = new RequestResponse();
 
-        System.err.println(loginRequest.getEmail() + " " + loginRequest.getUsername() + " " + loginRequest.getPassword());
-
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
                     loginRequest.getPassword()));
@@ -75,11 +74,17 @@ public class UserManagementService {
             var user2 = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();
             var token = jwtUtils.generateToken(user2);
             var refreshedToken = jwtUtils.generateRefreshToken(new HashMap<>(), user2);
+
+            System.out.println(user2.getEmail() + " " + token);
+
             loginResponse.setStatusCode(200);
             loginResponse.setToken(token);
             loginResponse.setRefreshToken(refreshedToken);
             loginResponse.setExpirationTime("24 Hours");
             loginResponse.setMessage("User logged in successfully");
+            loginResponse.setEmail(user2.getEmail());
+            loginResponse.setUsername(user2.getUsername());
+            loginResponse.setRoles(UserRole.USER);
         } catch (Exception e) {
             loginResponse.setStatusCode(500);
             loginResponse.setError(e.getMessage());
@@ -222,4 +227,29 @@ public class UserManagementService {
         return infoResponse;
     }
 
+    public RequestResponse isTokenValid(String token, String email) {
+        RequestResponse isValidResponse = new RequestResponse();
+
+        try {
+            Optional<User> user = userRepository.findByEmail(email);
+            System.err.println(email);
+            if (user.isPresent()) {
+                if (jwtUtils.validateToken(token, user.get())) {
+                    isValidResponse.setStatusCode(200);
+                    isValidResponse.setMessage("User with email " + email + " is valid");
+                } else {
+                    isValidResponse.setStatusCode(401);
+                    isValidResponse.setMessage("Unauthorized - Invalid token");
+                }
+            } else {
+                isValidResponse.setStatusCode(404);
+                isValidResponse.setMessage("No user found");
+            }
+            return isValidResponse;
+        } catch (Exception e) {
+            isValidResponse.setStatusCode(500);
+            isValidResponse.setError(e.getMessage());
+            return isValidResponse;
+        }
+    }
 }

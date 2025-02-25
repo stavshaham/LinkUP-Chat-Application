@@ -4,6 +4,8 @@ import './LoginPage.css';
 import { FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import UserServices from '../../services/UserServices';
+import SuccessAlert from '../alerts/success/SuccessAlert.tsx';
+import ErrorAlert from '../alerts/error/ErrorAlert.tsx';
 
 // Define the structure of form data
 interface FormData {
@@ -102,6 +104,7 @@ const LoginPage: React.FC = () => {
       if (userData.token) {
         localStorage.setItem('token', userData.token);
         localStorage.setItem('roles', userData.roles);
+        localStorage.setItem('userData', JSON.stringify(userData));
         
         setSuccessMessage('Login successful!');
 
@@ -111,16 +114,15 @@ const LoginPage: React.FC = () => {
               setTimeout(() => {
                   setShowSuccess(false);
               }, 5000);
-
-        navigate('/chats');
       }
       console.log('Login form submitted:', formData);
       
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      navigate('/chats');
       
     } catch (error) {
-      // Log error and update errors state
       console.error('Login error:', error);
       setErrors({
         email: 'Invalid email or password'
@@ -210,6 +212,11 @@ const LoginPage: React.FC = () => {
           Don't have an account? <Link to="/register">Sign up</Link>
         </div>
       </div>
+
+      {/* // In the return statement: */}
+      <SuccessAlert message={successMessage} show={showSuccess} onClose={handleCloseSuccess} />
+      <ErrorAlert message={errorMessage} show={showError} onClose={handleCloseError} />
+
     </div>
   );
 };

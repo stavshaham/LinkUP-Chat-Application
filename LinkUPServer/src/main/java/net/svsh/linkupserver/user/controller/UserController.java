@@ -1,6 +1,7 @@
 package net.svsh.linkupserver.user.controller;
 
 import net.svsh.linkupserver.dto.RequestResponse;
+import net.svsh.linkupserver.security.jwt.JWTUtils;
 import net.svsh.linkupserver.user.User;
 import net.svsh.linkupserver.user.UserRepository;
 import net.svsh.linkupserver.user.service.UserManagementService;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -95,5 +98,17 @@ public class UserController {
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
+    @RequestMapping(value = "api/validate-token", method = RequestMethod.POST)
+    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader, @RequestBody RequestResponse requestUser) {
+        // Extract token from Bearer header
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            System.err.println("ERROR!");
+            return ResponseEntity.badRequest().body("Invalid token format");
+        }
 
+        System.out.println(requestUser);
+
+        String token = authHeader.substring(7);
+        return ResponseEntity.ok(userManagementService.isTokenValid(token, requestUser.getEmail()));
+    }
 }

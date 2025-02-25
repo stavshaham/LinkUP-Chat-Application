@@ -2,7 +2,9 @@ package net.svsh.linkupserver.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import net.svsh.linkupserver.user.User;
 import net.svsh.linkupserver.user.UserRole;
 

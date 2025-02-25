@@ -7,3 +7,4 @@
 /dataSources/
 /dataSources.local.xml
 LinkUPServer/src/main/java/net/svsh/linkupserver/security/jwt/JWTUtils.java
+node_modules

@@ -280,6 +280,17 @@ html, body {
   opacity: 0.8;
 }
 
+.success-alert,
+.error-alert {
+    display: none; /* Start hidden */
+}
+
+.success-alert.show,
+.error-alert.show {
+    display: flex; /* Show when the 'show' class is added */
+    opacity: 1; /* Fully visible */
+}
+
 /* Keyframes for gradient animation */
 /* These keyframes create the gradient animation */
 @keyframes gradientAnimation {
